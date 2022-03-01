@@ -1,0 +1,89 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: "2022-03-01T04:33:42Z"
+  managedFields:
+  - apiVersion: batch/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:concurrencyPolicy: {}
+        f:failedJobsHistoryLimit: {}
+        f:jobTemplate:
+          f:spec:
+            f:backoffLimit: {}
+            f:template:
+              f:spec:
+                f:affinity: {}
+                f:containers:
+                  k:{"name":"test"}:
+                    .: {}
+                    f:args: {}
+                    f:image: {}
+                    f:imagePullPolicy: {}
+                    f:name: {}
+                    f:resources: {}
+                    f:terminationMessagePath: {}
+                    f:terminationMessagePolicy: {}
+                f:dnsPolicy: {}
+                f:imagePullSecrets:
+                  .: {}
+                  k:{"name":"registry"}:
+                    .: {}
+                    f:name: {}
+                f:restartPolicy: {}
+                f:schedulerName: {}
+                f:securityContext: {}
+                f:serviceAccount: {}
+                f:serviceAccountName: {}
+                f:terminationGracePeriodSeconds: {}
+        f:schedule: {}
+        f:successfulJobsHistoryLimit: {}
+        f:suspend: {}
+    manager: rancher
+    operation: Update
+    time: "2022-03-01T04:48:20Z"
+  name: test
+  namespace: default
+  resourceVersion: "1843819"
+  uid: d8d26eb8-5d98-464e-a64a-8c467711df2d
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          affinity: {}
+          containers:
+          - args:
+            - -l
+            - workload.user.cattle.io/workloadselector=apps.deployment-default-cloudreve
+            - -cn
+            - cloudreve
+            - ls
+            - -lh
+            image: registry.int.ishuzhai.com/tools/cronjob:v1.1.0
+            imagePullPolicy: IfNotPresent
+            name: test
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          imagePullSecrets:
+          - name: registry
+          restartPolicy: Never
+          schedulerName: default-scheduler
+          securityContext: {}
+          serviceAccount: cronjob
+          serviceAccountName: cronjob
+          terminationGracePeriodSeconds: 30
+  schedule: 0 * * * *
+  successfulJobsHistoryLimit: 3
+  suspend: true
+status: {}
