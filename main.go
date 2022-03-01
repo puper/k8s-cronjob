@@ -104,7 +104,7 @@ func main() {
 			Error:  err,
 		})
 	}
-	SendError(&Response{
+	SendSuccess(&Response{
 		Stdout: stdoutStr,
 		Stderr: stderrStr,
 		Error:  nil,
